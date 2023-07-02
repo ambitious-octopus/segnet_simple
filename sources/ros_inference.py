@@ -30,7 +30,7 @@ class PrednetSegmentation:
         self.frames = []
 
         # Setup classes
-        self.active_class_indices = [ 0, 1, 2 ]
+        self.active_class_indices = [ 1, 2, 3 ]
         active_class_names = [ class_names[i] for i in self.active_class_indices ]
 
         # Setup model
@@ -159,9 +159,9 @@ if __name__ == "__main__":
         cam_topic="/camera/camera/image"
 
         seg_class_names = [
-                'power_drill',
-                'screwdriver',
-                'plate',
+            'screwdriver',
+            'power_drill',
+            'plate',
         ]
 
         module = PrednetSegmentation("prednet_segmentation",
