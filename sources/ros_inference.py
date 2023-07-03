@@ -98,12 +98,12 @@ class PrednetSegmentation:
             preds = preds.to("cpu")
             preds_np = preds.squeeze(0).cpu().numpy().astype(np.uint8)
 
-            print(preds_np.shape)
             self.frames.clear()
 
         segment_images = []
         for i in range(0, len(self.active_class_indices)):
-            class_img = np.where(preds_np == self.active_class_indices[i], 1.0, 0.0)
+            print(preds_np[0,0])
+            class_img = np.where(preds_np == self.active_class_indices[i], 255.0, 0.0)
             segment_images.append(class_img)
 
         return segment_images
@@ -159,6 +159,7 @@ if __name__ == "__main__":
         cam_topic="/camera/camera/image"
 
         seg_class_names = [
+            'bg',
             'screwdriver',
             'power_drill',
             'plate',
