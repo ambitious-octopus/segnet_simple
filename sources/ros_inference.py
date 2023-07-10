@@ -88,7 +88,8 @@ class PrednetSegmentation:
 
         # Publish segmentation masks
         for i in range(0, len(self.active_class_indices)):
-            ros_img = self.cv_bridge.cv2_to_imgmsg(segment_images[i], encoding="passthrough")
+            numpy_img = segment_images[i].astype(np.uint8)
+            ros_img = self.cv_bridge.cv2_to_imgmsg(numpy_img)
             self.ros_seg_pubs[i].publish(ros_img)
 
     def SegmentImage(self, image):
